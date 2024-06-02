@@ -4,13 +4,13 @@ import Header from "./Header/Header"
 
 const Layout = () => {
   return (
-    <div className="page">
+    <>
       <Header />
       <main className="main">
         <Outlet />
       </main>
       <Footer />
-    </div>
+    </>
   )
 }
 
