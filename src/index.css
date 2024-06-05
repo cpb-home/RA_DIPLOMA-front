@@ -72,13 +72,6 @@ section {
   margin-bottom: 2em;
 }
 
-li {
-  display: list-item;
-  text-align: -webkit-match-parent;
-  unicode-bidi: isolate;
-  list-style: none;
-}
-
 /* Common Styles */
 .invisible {
   opacity: 0;
@@ -86,92 +79,81 @@ li {
 
 /* Header */
 .container {
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 1140px;
+  padding: 0 15px;
+  margin: 0 auto;
+  width: 1140px;
 
   @media (min-width: 769px) and (max-width: 991px) {
-    max-width: 960px;
+    width: 960px;
   }
 
   @media (min-width: 576px) and (max-width: 768px) {
-    max-width: 720px;
+    width: 720px;
   }
 
   @media (max-width: 575px) {
-    max-width: 540px;
+    width: 540px;
   }
 }
 
 .row {
   width: 100%;
-  display: -ms-flexbox;
+  margin: 0 auto;
+  background-color: #f8f9fa;
+  padding: 13px 16px;
   display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
-  align-items: center;
-}
-
-.col {
-  -ms-flex-preferred-size: 0;
-  flex-basis: 0;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  max-width: 100%;
+  justify-content: space-between;
 }
 
 .navbar {
   position: relative;
-  display: -ms-flexbox;
+  width: 100%;
   display: flex;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -ms-flex-align: center;
   align-items: center;
-  -ms-flex-pack: justify;
+  gap: 9px;
+}
+
+.navbar-brand {
+  width: 184px;
+  height: 59px;
+}
+
+.navbar-brand img {
+  width: 100%;
+}
+
+.navbar-collapse {
+  display: flex;
   justify-content: space-between;
-  padding: .5rem 1rem;
+  flex-grow: 1;
 }
 
-@media (min-width: 576px) {
-  .navbar-expand-sm {
-      -ms-flex-flow: row nowrap;
-      flex-flow: row nowrap;
-      -ms-flex-pack: start;
-      justify-content: flex-start;
-  }
+.navbar-nav {
+  display: flex;
+  gap: 16px;
+  padding: 0 15px;
 }
 
-
-
-
-
-
-
-.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
-  color: rgba(0, 0, 0, .9);
+.nav-item {
+  text-align: -webkit-match-parent;
+  unicode-bidi: isolate;
+  list-style: none;
 }
 
-.navbar-light .navbar-nav .nav-link {
+.nav-link {
   color: rgba(0, 0, 0, .5);
-}
 
-.bg-light {
-  background-color: #f8f9fa !important;
-}
-
-@media (min-width: 576px) {
-  .navbar-expand-sm {
-      -ms-flex-flow: row nowrap;
-      flex-flow: row nowrap;
-      -ms-flex-pack: start;
-      justify-content: flex-start;
+  &.active {
+    color: rgba(0, 0, 0, .9);
   }
 }
+
+
+
+
+
+
 
 
 
@@ -185,7 +167,7 @@ li {
   height: 32px;
   width: 32px;
   margin: 0 10px;
-  background-image: url(../img/header-controls-sprite.png);
+  background-image: url(http://localhost:5173/RA_DIPLOMA-front/img/header-controls-sprite.png);
   background-repeat: no-repeat;
   cursor: pointer;
 }
@@ -219,7 +201,7 @@ li {
 }
 .header-controls-search-form {
   position: absolute;
-  right: 65px;
+  right: 55px;
   top: calc(50% - 19px);
   display: block;
   width: 233px;
@@ -233,10 +215,11 @@ li {
 .header-controls-search-form .form-control {
   width: 100%;
   height: 100%;
-  color: #333333;
+  color: #666666;
   border: none;
   outline: none;
   box-shadow: none;
+  padding-right: 25px;
 }
 
 /* Banner */
@@ -435,9 +418,7 @@ li {
 }
 
 /* Bootstrap */
-.nav-link.active {
-  color: #ff0000;
-}
+
 
 h2,
 .h2 {
