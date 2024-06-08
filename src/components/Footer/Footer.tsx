@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom"
 
 const Footer = () => {
   return (
-    <div className="container">
+    <footer className="container">
       <div className="row">
         <div className="col">
           <section>
@@ -40,14 +40,14 @@ const Footer = () => {
         </div>
         <div className="col text-right">
           <section className="footer-contacts">
-            <h5>Контакты</h5>
+            <h5>Контакты:</h5>
             <a className="footer-contacts-phone" href="tel:+74951903503">+7 (495) 190-35-03</a>
             <span className="footer-contacts-working-hours"> Ежедневно: с 09-00 до 21-00</span>
             <a className="footer-contacts-email" href="mailto:office@bosanoga.ru">office@bosanoga.ru</a>
           </section>
         </div>
       </div>
-    </div>
+    </footer>
   )
 }
 
