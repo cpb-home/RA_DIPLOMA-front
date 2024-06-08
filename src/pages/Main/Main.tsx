@@ -1,12 +1,13 @@
 import Banner from "../../components/Banner/Banner"
+import Hits from "../../components/Hits/Hits"
+import Catalog from "../../components/Catalog/Catalog"
 
 const Main = () => {
   return (
     <div className="main">
       <Banner />
-      <div className="mainCont">
-        Main page
-      </div>
+      <Hits />
+      <Catalog />
     </div>
   )
 }

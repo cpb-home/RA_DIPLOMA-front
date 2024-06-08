@@ -9,3 +9,9 @@ export interface ICatalogItem {
   name: string,
   price: number
 }
+
+export interface IHitsListReducer {
+  loading: boolean;
+  error: string;
+  hits: ICatalogItem[];
+}

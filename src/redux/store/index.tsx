@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import catalog from "../slices/catalogSlice";
+import hits from "../slices/hitsSlice";
 
 export const store = configureStore({
   reducer: {
-    catList: catalog
+    catList: catalog,
+    hitsList: hits
   },
   middleware: (getDefaulMiddleWare) => getDefaulMiddleWare()
 });

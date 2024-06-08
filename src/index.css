@@ -46,6 +46,7 @@ html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
+  font-size: 16px;
 }
 
 body {
@@ -71,6 +72,13 @@ h5 {
 h1 {
   margin: 30px;
   text-align: center;
+  font-size: 2.5rem;
+}
+
+h2 {
+  margin: 20px;
+  text-align: center;
+  font-size: 2rem;
 }
 
 a {
