@@ -1,6 +1,6 @@
 const Contacts = () => {
   return (
-    <div className="mainCont">
+    <div className="main">
       <h1>Контакты.</h1>
       <div className="contactsCont">
         <div className="contactsBlockItem">

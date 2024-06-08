@@ -16,28 +16,26 @@ const Header = () => {
   const formVisibility = formView ? 'header-controls-search-form form-inline' : 'header-controls-search-form form-inline invisible' ;
 
   return (
-    <header className="container">
-      <div className="row">
-        <nav className="navbar">
-          <a className="navbar-brand" href="/">
-            <img src="http://localhost:5173/RA_DIPLOMA-front/img/header-logo.png" alt="Bosa Noga" />
-          </a>
-          <div className="navbar-collapse">
-            <HeaderMenu />
-            <div>
-              <div className="header-controls-pics">
-                <form className={formVisibility} data-id="search-form">
-                  <input className="form-control" type="text" ref={inputRef} autoFocus />
-                </form>
-                <a className="header-controls-pic header-controls-search" onClick={clickHandler}></a>
-                <NavLink className={"header-controls-pic header-controls-cart"} to='/RA_DIPLOMA-front/basket/'>
-                  <div className="header-controls-cart-full">1</div>
-                </NavLink>
-              </div>
+    <header className="header">
+      <nav className="navbar">
+        <a className="navbar-brand" href="/">
+          <img src="http://localhost:5173/RA_DIPLOMA-front/img/header-logo.png" alt="Bosa Noga" />
+        </a>
+        <div className="navbar-collapse">
+          <HeaderMenu />
+          <div>
+            <div className="header-controls-pics">
+              <form className={formVisibility} data-id="search-form">
+                <input className="form-control" type="text" ref={inputRef} autoFocus />
+              </form>
+              <a className="header-controls-pic header-controls-search" onClick={clickHandler}></a>
+              <NavLink className={"header-controls-pic header-controls-cart"} to='/RA_DIPLOMA-front/basket/'>
+                <div className="header-controls-cart-full">1</div>
+              </NavLink>
             </div>
           </div>
-        </nav>
-      </div>
+        </div>
+      </nav>
     </header>
   )
 }

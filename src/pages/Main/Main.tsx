@@ -1,7 +1,12 @@
+import Banner from "../../components/Banner/Banner"
+
 const Main = () => {
   return (
-    <div>
-      Main page
+    <div className="main">
+      <Banner />
+      <div className="mainCont">
+        Main page
+      </div>
     </div>
   )
 }
