@@ -19,8 +19,8 @@ function App() {
         <Route path='catalog' element={<Catalog />} />
         <Route path='contacts' element={<Contacts />} />
         <Route path='basket' element={<Basket />} />
-        <Route path='404' element={<Page404 />} />
         <Route path='catalog/:id' element={<Item />} />
+        <Route path='*' element={<Page404 />} />
       </Route>
     </Routes>
   )

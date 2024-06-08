@@ -68,6 +68,11 @@ h5 {
   unicode-bidi: isolate;
 }
 
+h1 {
+  margin: 30px;
+  text-align: center;
+}
+
 a {
   color: #727e86;
 }
@@ -81,6 +86,11 @@ a:active {
 
 a:hover {
   cursor: pointer;
+}
+
+p {
+  margin: 15px 0;
+  text-align: justify;
 }
 
 section {
@@ -353,6 +363,23 @@ section {
   border: none;
   outline: none;
   box-shadow: none;
+}
+
+.mainCont {
+  padding: 10px;
+  min-height: 60vh;
+}
+
+.contactsCont {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.contactsBlockItem {
+  text-align: center;
 }
 
 /* Footer */
