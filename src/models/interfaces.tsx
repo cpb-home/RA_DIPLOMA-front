@@ -6,8 +6,10 @@ export interface ICatalogListReducer {
 
 export interface ICatalogItem {
   id: number,
-  name: string,
-  price: number
+  category: string,
+  title: string,
+  price: number,
+  images: string[]
 }
 
 export interface IHitsListReducer {

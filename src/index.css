@@ -333,6 +333,58 @@ section {
   }
 }
 
+.cardsList {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+}
+
+.cardItem {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(0, 0, 0, .125);
+}
+
+.cardImgCont img {
+  width: 100%;
+  height: auto;
+}
+
+.cardInfoCont {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.cardInfoCont span {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.cardButton {
+  width: 90px;
+  padding: 10px;
+  cursor: pointer;
+  color: var(--primary);
+  font-size: 16px;
+  background-color: white;
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+
+  &:hover {
+    background-color: rgb(214, 214, 214);
+  }
+}
+
+.cardButtonLink {
+  width: 90px;
+}
+
 /* Top Sales */
 .top-sales {
   min-height: 300px;

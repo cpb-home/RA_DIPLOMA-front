@@ -18,8 +18,9 @@ export const fetchHitsList = createAsyncThunk(
       if (!response.ok) {
         return rejectWithValue('Loading error');
       }
-
-      return await response.json();
+      
+      const resp = await response.json();
+      return resp;
     } catch(e) {
       return rejectWithValue(e);
     }
