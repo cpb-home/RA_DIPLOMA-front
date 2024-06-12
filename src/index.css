@@ -468,6 +468,10 @@ section {
   border: 1px solid var(--red);
   margin-bottom: 30px;
 }
+.itemBuyBtn:disabled {
+  background-color: lightgray;
+  border: 1px solid lightgray;
+}
 .itemChangeCountBtn {
   background-color: var(--gray);
   color: white;
@@ -504,7 +508,6 @@ section {
   padding: 5px;
   width: 40px;
   text-align: center;
-
 }
 .itemSizeEl {
   display: inline-block;

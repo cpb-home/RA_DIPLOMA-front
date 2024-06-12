@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { fetchItemInfo } from "../../redux/slices/itemCardSlice";
@@ -8,13 +8,21 @@ const Item = () => {
   const itemCard = useAppSelector((state) => state.itemCard);
   const [itemsCount, setItemsCount] = useState(1);
   const dispatch = useAppDispatch();
+  const [btnDisabled, setBtnDisabled] = useState(true);
 
   useEffect(() => {
     dispatch(fetchItemInfo(Number(id)));
   }, []);
 
-  const changeHandler = () => {
-    console.log(1);
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = Number(e.target.value);
+    if (!Number.isNaN(val)){
+      if (val === 0) {
+        setItemsCount(1);
+      } else {
+        setItemsCount(val);
+      }
+    }
   };
 
   const clickHandlerCount = (todo: string) => {
@@ -27,8 +35,14 @@ const Item = () => {
     }
   }
 
-  const clickHandlerShop = () => {
-    console.log(3);
+  const clickHandlerShop = async (formdata) => {
+    console.log({
+      sizes: formdata.get('sizes')
+    });
+  }
+
+  const selectSizeHandler = () => {
+    setBtnDisabled(false);
   }
 
   return (
@@ -41,7 +55,7 @@ const Item = () => {
             <div className="itmsImgCont">
               <img src={itemCard.itemInfo.images[0]} alt={itemCard.itemInfo.title} />
             </div>
-            <form className="itemInfoCont">
+            <form className="itemInfoCont" action={clickHandlerShop}>
               <table className="itemInfoTable">
                 <tbody>
                   <tr>
@@ -78,16 +92,16 @@ const Item = () => {
                   itemCard.itemInfo.sizes.map((e, i) => e.available ? 
                     <label className="itemSizeLabel" key={i}>
                       <span className="itemSizeEl">{e.size}</span>
-                      <input type="radio" name="sizes" value={e.size} />
+                      <input type="radio" name="sizes" value={e.size} onChange={selectSizeHandler} />
                     </label> : '')
                   }
               </div>
               <div className="itemCountCont">
                 <span>Количество: </span>
                 <button className="itemChangeCountBtn" type="button" onClick={() => clickHandlerCount('minus')}>-</button>
-                <input value={itemsCount} onChange={changeHandler} />
+                <input value={itemsCount} onChange={changeHandler} type="text" pattern="[0-9]*" />
                 <button className="itemChangeCountBtn" type="button" onClick={() => clickHandlerCount('plus')}>+</button></div>
-              <button className="itemBuyBtn" type="button" onClick={clickHandlerShop}>В корзину</button>
+              <button className="itemBuyBtn" type="button" onClick={clickHandlerShop} disabled={btnDisabled}>В корзину</button>
             </form>
           </div>
         </div>
