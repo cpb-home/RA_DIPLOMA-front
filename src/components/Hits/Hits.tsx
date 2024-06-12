@@ -14,10 +14,10 @@ const Hits = () => {
 
   return (
     <article className="mainArticle">
-      {hitsList.hits.length !== 0 && 
+      {!(hitsList.hits.length === 0 && !hitsList.loading) && 
         <div className="top-sales">
           <h2>Хиты продаж</h2>
-          {hitsList.loading && <div className="preloader"><span>Loading...</span></div>}
+          {hitsList.loading && <div className="preloader"><span></span><span></span><span></span><span></span></div>}
           {hitsList.hits && 
             <div className="cardsList">
               {hitsList.hits.map(e => 

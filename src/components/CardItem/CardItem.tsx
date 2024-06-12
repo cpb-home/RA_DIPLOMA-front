@@ -12,8 +12,8 @@ const CardItem = ({ id, title, price, images }: ICatalogItem) => {
       <div className="cardInfoCont">
         <span className="cardTitle">{title}</span>
         <span className="cardPrice">{price} руб.</span>
-        <NavLink className="cardButtonLink" to={`/RA_DIPLOMA-front/catalog/:${id}`}>
-          <button className="cardButton" type="button">Заказать</button>
+        <NavLink className="cardButtonLink" to={`/RA_DIPLOMA-front/item/${id}`}>
+          <button className="cardButton" type="button">Подробнее</button>
         </NavLink>
       </div>
     </div>

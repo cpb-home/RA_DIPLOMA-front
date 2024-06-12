@@ -41,6 +41,7 @@ export const hitsSlice = createSlice({
     .addCase(fetchHitsList.pending, (state) => {
       state.loading = true;
       state.error = '';
+      state.hits = [];
     })
     .addCase(fetchHitsList.fulfilled, (state, action) => {
       state.loading = false;

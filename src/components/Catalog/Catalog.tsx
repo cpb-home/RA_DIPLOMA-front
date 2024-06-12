@@ -13,23 +13,28 @@ const Catalog = () => {
   
   return (
     <article className="mainArticle">
-      {catList.catalog.length !== 0 && 
+      {!(catList.catalog.length === 0 && !catList.loading) && 
         <div className="catalog">
           <h2>Каталог</h2>
-          {catList.loading && <div className="preloader"><span>Loading...</span></div>}
+          {catList.loading && <div className="preloader"><span></span><span></span><span></span><span></span></div>}
           {catList.catalog && 
-            <div className="cardsList">
-              {catList.catalog.map(e => 
-                <CardItem  
-                  key={e.id}
-                  id={e.id} 
-                  category={e.category} 
-                  title={e.title} 
-                  price={e.price} 
-                  images={e.images}
-                />
-              )}
-            </div>
+            <>
+              <div className="cardsList">
+                {catList.catalog.map(e => 
+                  <CardItem  
+                    key={e.id}
+                    id={e.id} 
+                    category={e.category} 
+                    title={e.title} 
+                    price={e.price} 
+                    images={e.images}
+                  />
+                )}
+              </div>
+              <div className="loadMoreCont">
+                <button className="cardButton" type="button">Загрузить ещё</button>
+              </div>
+            </>
           }
         </div>
       }
