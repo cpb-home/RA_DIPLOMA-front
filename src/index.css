@@ -73,6 +73,11 @@ h2 {
   text-align: center;
   font-size: 2rem;
 }
+h3 {
+  margin: 20px;
+  text-align: center;
+  font-size: 1.5rem;
+}
 a {
   color: #727e86;
 }
@@ -124,6 +129,7 @@ section {
 }
 .mainArticle {
   padding-top: 20px;
+  min-height: 50vh;
 }
 
 /* Header */
@@ -528,6 +534,88 @@ section {
   text-align: right;
   font-size: 30px;
   color: red;
+}
+
+
+/* Basket */
+.shopTableCont{
+  margin-bottom: 30px;
+}
+.shopTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 5px;
+}
+.shopTable td {
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid rgba(0, 0, 0, .125);
+  width: 8%;
+}
+.shopTable thead tr td:first-child, .shopTable tbody tr td:first-child {
+  width: 5%;
+}
+.shopTable thead tr td:nth-child(2), .shopTable tbody tr td:nth-child(2) {
+  width: 45%;
+}
+.shopTable tfoot tr td:first-child {
+  text-align: right;
+}
+
+.shopOrderCont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.shopOrderBody {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  font-size: 14px;
+  border: 1px solid rgba(0, 0, 0, .125);
+  width: 400px;
+  margin-bottom: 30px;
+}
+.input {
+  border: 1px solid rgba(0, 0, 0, .125);
+  outline: none;
+  padding: 5px 10px;
+  color: var(--gray);
+  margin-bottom: 10px;
+}
+.inputLabel {
+  margin-bottom: 5px;
+}
+.orderCheckboxCont {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.orderSubmitBtn {
+  outline: none;
+  display: inline;
+}
+.orderSubmitBtn:disabled {
+  background-color: lightgray;
+  border: 1px solid lightgray;
+  color: white;
+}
+.messageBox {
+  padding: 5px;
+  color: red;
+  height: 30px;
+}
+.delButton {
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  background-color: white;
+  cursor: pointer;
+  outline: none;
+  padding: 5px 10px;
+
+  &:hover {
+    background-color: pink;
+  }
 }
 
 /* Footer */

@@ -8,8 +8,20 @@ import Contacts from './pages/Contacts/Contacts'
 import Basket from './pages/Basket/Basket'
 import Page404 from './pages/Page404/Page404'
 import Item from './pages/Item/Item'
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { basketSet } from './redux/slices/basketItemsSlice'
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const LS = localStorage.getItem('raDiplomaBasketItems');
+    if (LS) {
+      const LSstr = JSON.parse(LS);
+      dispatch(basketSet(LSstr));
+    }
+  }, []);
 
   return (
     <Routes>

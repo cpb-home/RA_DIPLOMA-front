@@ -19,7 +19,15 @@ export interface IHitsListReducer {
 }
 
 export interface BasketItemsReducer {
-  items: number
+  items: BasketItems[];
+}
+
+export interface BasketItems {
+  id: number,
+  size: string,
+  title: string,
+  quantity: number,
+  price: number
 }
 
 export interface ItemCardReducer {

@@ -8,7 +8,7 @@ export const store = configureStore({
   reducer: {
     catList: catalog,
     hitsList: hits,
-    basketItemsCount: basketItemsSlice,
+    basketItems: basketItemsSlice,
     itemCard: itemCardSlice
   },
   middleware: (getDefaulMiddleWare) => getDefaulMiddleWare()

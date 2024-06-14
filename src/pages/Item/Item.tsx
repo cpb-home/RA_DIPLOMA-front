@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { fetchItemInfo } from "../../redux/slices/itemCardSlice";
+import { basketAdd } from "../../redux/slices/basketItemsSlice";
 
 const Item = () => {
   const { id } = useParams();
@@ -9,6 +10,8 @@ const Item = () => {
   const [itemsCount, setItemsCount] = useState(1);
   const dispatch = useAppDispatch();
   const [btnDisabled, setBtnDisabled] = useState(true);
+  const [currentSize, setCurrentSize] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchItemInfo(Number(id)));
@@ -35,14 +38,20 @@ const Item = () => {
     }
   }
 
-  const clickHandlerShop = async (formdata) => {
-    console.log({
-      sizes: formdata.get('sizes')
-    });
+  const clickHandlerShop = () => {
+    const price = itemCard.itemInfo?.price;
+    const title = itemCard.itemInfo?.title;
+    const size = currentSize;
+    const quantity = itemsCount;
+    dispatch(basketAdd({id, title, price, size, quantity}));
+    //console.log(id, title, price, size, quantity);
+    navigate('/RA_DIPLOMA-front/basket');
   }
 
-  const selectSizeHandler = () => {
+  const selectSizeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
     setBtnDisabled(false);
+    setCurrentSize(val);
   }
 
   return (
@@ -55,7 +64,7 @@ const Item = () => {
             <div className="itmsImgCont">
               <img src={itemCard.itemInfo.images[0]} alt={itemCard.itemInfo.title} />
             </div>
-            <form className="itemInfoCont" action={clickHandlerShop}>
+            <form className="itemInfoCont">
               <table className="itemInfoTable">
                 <tbody>
                   <tr>

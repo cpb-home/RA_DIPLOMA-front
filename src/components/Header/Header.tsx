@@ -6,7 +6,7 @@ import { useAppSelector } from "../../hooks";
 const Header = () => {
   const [formView, setformView] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  const basketItemsCount = useAppSelector((state) => state.basketItemsCount.items);
+  const basketItemsCount = useAppSelector((state) => state.basketItems.items.length);
 
   const clickHandler = () => {
     setformView(!formView);
