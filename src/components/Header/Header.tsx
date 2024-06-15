@@ -1,21 +1,35 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import HeaderMenu from "../HeaderMenu/HeaderMenu"
-import { useRef, useState } from "react";
-import { useAppSelector } from "../../hooks";
+import React, { useRef, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { setText } from "../../redux/slices/searchSlice";
 
 const Header = () => {
+  const navigate = useNavigate();
   const [formView, setformView] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const basketItemsCount = useAppSelector((state) => state.basketItems.items.length);
+  const dispatch = useAppDispatch();
+  const searchText = useAppSelector((state) => state.searchText);
 
   const clickHandler = () => {
-    setformView(!formView);
-    if (inputRef.current) {
-      inputRef.current.focus();
+    if (searchText.searchText) {
+      setformView(!formView);
+      navigate('/RA_DIPLOMA-front/catalog/');
+    } else {
+      setformView(!formView);
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
     }
   };
 
   const formVisibility = formView ? 'header-controls-search-form form-inline' : 'header-controls-search-form form-inline invisible' ;
+
+  const searchInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    dispatch(setText(value));
+  }
 
   return (
     <header className="header">
@@ -28,7 +42,7 @@ const Header = () => {
           <div>
             <div className="header-controls-pics">
               <form className={formVisibility} data-id="search-form">
-                <input className="form-control" type="text" ref={inputRef} autoFocus />
+                <input className="form-control" type="text" ref={inputRef} onChange={searchInputHandler} autoFocus />
               </form>
               <a className="header-controls-pic header-controls-search" onClick={clickHandler}></a>
               <NavLink className={"header-controls-pic header-controls-cart"} to='/RA_DIPLOMA-front/basket/'>

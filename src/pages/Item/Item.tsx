@@ -37,7 +37,7 @@ const Item = () => {
         (itemsCount - 1) < 1 ? setItemsCount(1) : setItemsCount (itemsCount - 1);
     }
   }
-
+console.log(itemCard.itemInfo)
   const clickHandlerShop = () => {
     const price = itemCard.itemInfo?.price;
     const title = itemCard.itemInfo?.title;

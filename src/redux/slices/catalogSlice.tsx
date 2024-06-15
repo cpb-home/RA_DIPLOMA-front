@@ -1,28 +1,24 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { ICatalogListReducer } from "../../models/interfaces"
+import { ICatalogListReducer, SortProps } from "../../models/interfaces"
 
 const initialState = {
   loading: false,
   error: '',
   catalog: [
     
-  ]
+  ],
+  more: true
 } as ICatalogListReducer;
 
 export const fetchCatalogList = createAsyncThunk(
   'catalogList/fetchCatalogList',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await fetch(import.meta.env.VITE_CATALOG_URL);
-
-      if (!response.ok) {
-        return rejectWithValue('Loading error');
-      }
-
-      return await response.json();
-    } catch(e) {
-      return rejectWithValue(e);
-    }
+  async (sortProps: SortProps) => {
+    let offsetProp = sortProps.offset && sortProps.offset !== '0' ? 'offset=' + sortProps.offset : '';
+    const categoryProp = sortProps.categoryId && sortProps.categoryId !== '0' ? 'categoryId=' + sortProps.categoryId : '';
+    offsetProp = offsetProp && categoryProp ? '&' + offsetProp : offsetProp;
+    
+    return await fetch(import.meta.env.VITE_CATALOG_URL + '?' + categoryProp + offsetProp)
+    .then(res => res.json());
   }
 );
 
@@ -33,7 +29,9 @@ export const catalogSlice = createSlice({
     catalog: (state) => state.catalog
   },
   reducers: {
-
+    clearCatalog: (state) => {
+      state.catalog = [];
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -44,7 +42,12 @@ export const catalogSlice = createSlice({
     .addCase(fetchCatalogList.fulfilled, (state, action) => {
       state.loading = false;
       state.error = '';
-      state.catalog = action.payload;
+      state.catalog = [...state.catalog, ...action.payload];
+      if (action.payload.length < 6) {
+        state.more = false;
+      } else {
+        state.more = true; 
+      }
     })
     .addCase(fetchCatalogList.rejected, (state, action) => {
       state.error = action.payload as string;
@@ -55,3 +58,4 @@ export const catalogSlice = createSlice({
 
 export default catalogSlice.reducer;
 export const { catalog } = catalogSlice.selectors;
+export const { clearCatalog } = catalogSlice.actions;
