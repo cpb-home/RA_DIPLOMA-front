@@ -71,4 +71,5 @@ export interface ICatalogCategory {
 export interface SortProps {
   categoryId?: string,
   offset?: string
+  searchText?: string
 }

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks"
-import { fetchCatalogList } from "../../redux/slices/catalogSlice";
+import { clearCatalog, fetchCatalogList } from "../../redux/slices/catalogSlice";
 import CardItem from "../CardItem/CardItem";
 import Categories from "../Categories/Categories";
 import { setText } from "../../redux/slices/searchSlice";
@@ -12,8 +12,16 @@ const Catalog = () => {
   const searchText = useAppSelector((state) => state.searchText);
 
   useEffect(() => {
-    dispatch(fetchCatalogList({categoryId: String(catCategories.current)}));
+    if (searchText.searchText && searchText.searchText !== '') {
+      dispatch(fetchCatalogList({searchText: String(searchText.searchText)}));
+    } else {
+      dispatch(fetchCatalogList({categoryId: String(catCategories.current)}));
+    }
   }, [catCategories.current]);
+
+  /*useEffect(() => {
+    dispatch(fetchCatalogList({categoryId: String(catCategories.current)}));
+  }, [catCategories.current]);*/
 
   const moreBtnHandler = () => {
     const missing = catList.catalog.length;
@@ -29,12 +37,20 @@ const Catalog = () => {
 
   const searchSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(e);
+    dispatch(clearCatalog());
+    const missing = catList.catalog.length;
+    if (searchText) {
+      dispatch(fetchCatalogList({
+        categoryId: String(catCategories.current), 
+        offset: String(missing), 
+        searchText: String(searchText.searchText)
+      }));
+    }
   };
 
   return (
     <article className="mainArticle">
-      {!(catList.catalog.length === 0 && !catList.loading) && 
+      {!(catList.catalog.length === 0 && !catList.loading) ? 
         <div className="catalog">
           <h2>Каталог</h2>
           <form className="catSearchCont" onSubmit={searchSubmitHandler}>
@@ -62,6 +78,13 @@ const Catalog = () => {
             </>
           }
         </div>
+        : <div className="catalog">
+            <h3>К сожалению, по вашему запросу ничего не удалось найти. Попробуйте ещё.</h3>
+            <form className="catSearchCont" onSubmit={searchSubmitHandler}>
+              <input type="text" name="search" value={searchText.searchText} onChange={searchInputHandler} placeholder="Введите текст для поиска..." />
+            </form>
+          </div>
+        
       }
       
     </article>

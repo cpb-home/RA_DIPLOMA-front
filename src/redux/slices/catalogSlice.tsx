@@ -13,12 +13,25 @@ const initialState = {
 export const fetchCatalogList = createAsyncThunk(
   'catalogList/fetchCatalogList',
   async (sortProps: SortProps) => {
-    let offsetProp = sortProps.offset && sortProps.offset !== '0' ? 'offset=' + sortProps.offset : '';
-    const categoryProp = sortProps.categoryId && sortProps.categoryId !== '0' ? 'categoryId=' + sortProps.categoryId : '';
-    offsetProp = offsetProp && categoryProp ? '&' + offsetProp : offsetProp;
-    
-    return await fetch(import.meta.env.VITE_CATALOG_URL + '?' + categoryProp + offsetProp)
-    .then(res => res.json());
+    /*if (sortProps.searchText && sortProps.searchText !== '') {
+      return await fetch(import.meta.env.VITE_CATALOG_URL + '?q=' + sortProps.searchText)
+      .then(res => {console.log(res); return res.json()});
+    }*/
+    if (sortProps.searchText && sortProps.searchText !== '') {
+      const searchText = (sortProps.searchText && sortProps.searchText !== '') ? 'q=' + sortProps.searchText : '';
+      let offsetProp = (sortProps.offset && sortProps.offset !== '0') ? 'offset=' + sortProps.offset : '';
+      offsetProp = (sortProps.searchText && sortProps.searchText !== '') ? '&' + offsetProp : offsetProp;
+
+      return await fetch(import.meta.env.VITE_CATALOG_URL + '?' + searchText + offsetProp)
+      .then(res => res.json());
+    } else {
+      let offsetProp = sortProps.offset && sortProps.offset !== '0' ? 'offset=' + sortProps.offset : '';
+      const categoryProp = sortProps.categoryId && sortProps.categoryId !== '0' ? 'categoryId=' + sortProps.categoryId : '';
+      offsetProp = offsetProp && categoryProp ? '&' + offsetProp : offsetProp;
+      
+      return await fetch(import.meta.env.VITE_CATALOG_URL + '?' + categoryProp + offsetProp)
+      .then(res => res.json());
+    }
   }
 );
 

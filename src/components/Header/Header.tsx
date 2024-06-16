@@ -15,7 +15,9 @@ const Header = () => {
   const clickHandler = () => {
     if (searchText.searchText) {
       setformView(!formView);
-      navigate('/RA_DIPLOMA-front/catalog/');
+      if (formView) {
+        navigate('/RA_DIPLOMA-front/catalog/');
+      }
     } else {
       setformView(!formView);
       if (inputRef.current) {
@@ -23,6 +25,14 @@ const Header = () => {
       }
     }
   };
+
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (searchText.searchText && searchText.searchText !== '') {
+      setformView(!formView);
+      navigate('/RA_DIPLOMA-front/catalog/');
+    }
+  }
 
   const formVisibility = formView ? 'header-controls-search-form form-inline' : 'header-controls-search-form form-inline invisible' ;
 
@@ -41,7 +51,7 @@ const Header = () => {
           <HeaderMenu />
           <div>
             <div className="header-controls-pics">
-              <form className={formVisibility} data-id="search-form">
+              <form className={formVisibility} data-id="search-form" onSubmit={submitHandler}>
                 <input className="form-control" type="text" ref={inputRef} onChange={searchInputHandler} autoFocus />
               </form>
               <a className="header-controls-pic header-controls-search" onClick={clickHandler}></a>
