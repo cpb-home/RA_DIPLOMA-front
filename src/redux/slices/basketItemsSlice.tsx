@@ -35,6 +35,7 @@ const basketItemsSlice = createSlice({
     },
     basketClear: (state) => {
       state.items = [];
+      localStorage.removeItem('raDiplomaBasketItems');
     },
     basketSet: (state, action) => {
       if (state.items.length === 0) {

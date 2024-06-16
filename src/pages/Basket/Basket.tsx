@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks"
 import React, { useState } from "react";
-import { basketRemove } from "../../redux/slices/basketItemsSlice";
+import { basketClear, basketRemove } from "../../redux/slices/basketItemsSlice";
 
 interface sendItem {
   id: number;
@@ -59,10 +59,10 @@ const Basket = () => {
             'Content-Type': 'application/json; charset=utf-8'
           },
           body: JSON.stringify(sendData),
-          mode: 'no-cors'
-        });console.log(response)
-        const res = await response.json();
-        console.log(res);
+        });
+        if (response.ok) {
+          dispatch(basketClear());
+        }
       } catch(e) {
         console.log('Ошибка: ' + e);
       }
