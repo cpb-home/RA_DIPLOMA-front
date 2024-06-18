@@ -12,6 +12,7 @@ const Item = () => {
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [currentSize, setCurrentSize] = useState('');
   const navigate = useNavigate();
+  
 
   useEffect(() => {
     dispatch(fetchItemInfo(Number(id)));
@@ -37,14 +38,13 @@ const Item = () => {
         (itemsCount - 1) < 1 ? setItemsCount(1) : setItemsCount (itemsCount - 1);
     }
   }
-console.log(itemCard.itemInfo)
+
   const clickHandlerShop = () => {
     const price = itemCard.itemInfo?.price;
     const title = itemCard.itemInfo?.title;
     const size = currentSize;
     const quantity = itemsCount;
     dispatch(basketAdd({id, title, price, size, quantity}));
-    //console.log(id, title, price, size, quantity);
     navigate('/RA_DIPLOMA-front/basket');
   }
 

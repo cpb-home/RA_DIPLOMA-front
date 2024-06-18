@@ -27,15 +27,15 @@ const basketItemsSlice = createSlice({
           }
         })
       }
-      localStorage.setItem('raDiplomaBasketItems', JSON.stringify(state.items));
+      //localStorage.setItem('raDiplomaBasketItems', JSON.stringify(state.items));
     },
     basketRemove: (state, action) => {
       state.items = state.items.filter(e => !(e.id === action.payload.id && e.size === action.payload.size) );
-      localStorage.setItem('raDiplomaBasketItems', JSON.stringify(state.items));
+      //localStorage.setItem('raDiplomaBasketItems', JSON.stringify(state.items));
     },
     basketClear: (state) => {
       state.items = [];
-      localStorage.removeItem('raDiplomaBasketItems');
+      //localStorage.removeItem('raDiplomaBasketItems');
     },
     basketSet: (state, action) => {
       if (state.items.length === 0) {

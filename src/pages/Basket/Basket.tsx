@@ -16,6 +16,10 @@ const Basket = () => {
   const [message, setMessage] = useState('');
   const dispatch = useAppDispatch();
 
+  if (basketItems.items.length > 0) {
+    localStorage.setItem('raDiplomaBasketItems', JSON.stringify(basketItems.items));
+  }
+
   const checkBoxHandler = () => {
     setBtnDisabled(!btnDisabled);
   }
@@ -43,8 +47,7 @@ const Basket = () => {
           acc.push(newEl);
           return acc;
         }, []);
-        console.log(itemsAr)
-        //console.log(basketItems.items)
+        
         const sendData = {
           owner: {
             phone: formData.phone,
@@ -63,6 +66,7 @@ const Basket = () => {
         if (response.ok) {
           dispatch(basketClear());
         }
+        localStorage.removeItem('raDiplomaBasketItems');
       } catch(e) {
         console.log('Ошибка: ' + e);
       }
@@ -76,7 +80,7 @@ const Basket = () => {
   }
 
   const deleteHandler = (e: React.MouseEvent<HTMLButtonElement>, delId: number, delSize: string) => {
-    dispatch(basketRemove({id: delId, size: delSize}))
+    dispatch(basketRemove({id: delId, size: delSize}));
   }
 
   return (
